@@ -1,0 +1,103 @@
+:root {
+  --sidebar-width: 230px;
+  --topbar-height: 60px;
+  --cwtms-primary: #2c3e50;
+  --cwtms-accent: #2563eb;
+}
+
+body {
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.cwtms-sidebar {
+  width: var(--sidebar-width);
+  min-height: 100vh;
+  background-color: var(--cwtms-primary);
+  color: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.cwtms-sidebar a {
+  color: #cbd5e1;
+  text-decoration: none;
+  display: block;
+  padding: 12px 20px;
+  border-left: 3px solid transparent;
+}
+
+.cwtms-sidebar a.active,
+.cwtms-sidebar a:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-left-color: var(--cwtms-accent);
+}
+
+.cwtms-content {
+  margin-left: var(--sidebar-width);
+  padding: 24px;
+}
+
+.cwtms-topbar {
+  margin-left: var(--sidebar-width);
+  height: var(--topbar-height);
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.stat-card {
+  border-radius: 10px;
+  padding: 18px 20px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.stat-card .stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2c3e50, #2563eb);
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 40px;
+  width: 380px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4); }
+  70% { transform: scale(1.03); box-shadow: 0 0 0 6px rgba(220, 53, 69, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+}
+
+.pulsing-badge {
+  animation: pulse 1.5s infinite;
+  display: inline-block;
+}
