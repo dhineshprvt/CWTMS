@@ -33,7 +33,7 @@ account uses the password **`Password@123`**:
 | Username | Role |
 |---|---|
 | admin | ADMIN |
-| supervisor1, supervisor2 | SUPERVISOR |
+| supervisor1, supervisor2, supervisor3 | SUPERVISOR |
 | worker1, worker2, worker3, worker4 | WORKER |
 
 ## 2. Run the backend
@@ -43,6 +43,8 @@ cd backend
 # Edit src/main/resources/application.properties:
 #   - spring.datasource.password -> your MySQL root password
 #   - app.jwt.secret -> any long random string (a default is already filled in for local dev)
+#   - spring.mail.username -> (Optional) your Gmail address for live notifications
+#   - spring.mail.password -> (Optional) your 16-character Google App Password
 
 mvn clean install
 mvn spring-boot:run
@@ -77,11 +79,13 @@ Opens on **http://localhost:5173**. Log in with any of the demo accounts above.
   local file upload/serving (no cloud SDK), and the complete task lifecycle (create → assign
   → start → upload proof → submit → approve/reject/rework) with an audit trail written to
   `task_history` on every transition.
+- **Asynchronous Email Notification System**: Real-time background SMTP email alerts (via Gmail or custom mail servers) dispatched to workers and supervisors whenever tasks are created, assigned, or reviewed.
 - **Frontend**: React Router with role-protected routes, Axios with a JWT interceptor,
   separate dashboards for Admin/Supervisor/Worker, sidebar navigation, stat cards, task
   create/edit/assign/search/filter, a review modal with photo/video gallery + status
   timeline, a multi-image + single-video upload page for Workers, and a reports page with a
   recharts bar chart plus a worker-performance table.
+- **Indian Language Accessibility & Audio TTS**: Complete UI translations for English, Tamil, Hindi, Telugu, Kannada, and Malayalam. Includes regional Text-to-Speech (TTS) audio narration with automated English fallback logic.
 
 ## What you should still do before your demo
 
