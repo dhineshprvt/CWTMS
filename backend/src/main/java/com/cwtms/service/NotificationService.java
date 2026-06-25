@@ -37,10 +37,19 @@ public class NotificationService {
         body.append("Dear ").append(recipient.getFullName()).append(",\n\n");
         body.append(message).append("\n\n");
         if (relatedTask != null) {
-            body.append("Task Details:\n");
-            body.append("- Title: ").append(relatedTask.getTitle()).append("\n");
-            body.append("- Category: ").append(relatedTask.getCategory()).append("\n");
-            body.append("- Due Date: ").append(relatedTask.getDueDate()).append("\n");
+            body.append("--- Task Details ---\n");
+            body.append("• Title: ").append(relatedTask.getTitle() != null ? relatedTask.getTitle() : "N/A").append("\n");
+            body.append("• Description: ").append(relatedTask.getDescription() != null ? relatedTask.getDescription() : "N/A").append("\n");
+            body.append("• Category: ").append(relatedTask.getCategory() != null ? relatedTask.getCategory() : "N/A");
+            if (relatedTask.getCustomCategory() != null && !relatedTask.getCustomCategory().trim().isEmpty()) {
+                body.append(" (").append(relatedTask.getCustomCategory()).append(")");
+            }
+            body.append("\n");
+            body.append("• Location: ").append(relatedTask.getLocation() != null ? relatedTask.getLocation() : "N/A").append("\n");
+            body.append("• Priority: ").append(relatedTask.getPriority() != null ? relatedTask.getPriority() : "N/A").append("\n");
+            body.append("• Status: ").append(relatedTask.getStatus() != null ? relatedTask.getStatus() : "N/A").append("\n");
+            body.append("• Due Date: ").append(relatedTask.getDueDate() != null ? relatedTask.getDueDate() : "N/A").append("\n");
+            body.append("--------------------\n");
         }
         body.append("\nBest Regards,\nCampus Workforce Task Management System");
 

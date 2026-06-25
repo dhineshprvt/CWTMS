@@ -29,21 +29,21 @@ export default function TaskForm({ initialValue, onSubmit, onCancel }) {
   return (
     <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-sm">
       <div className="mb-3">
-        <label className="form-label">Title</label>
+        <label className="form-label">Title <span className="text-danger">*</span></label>
         <input className="form-control" required value={form.title}
                onChange={(e) => update('title', e.target.value)} />
       </div>
 
       <div className="mb-3">
-        <label className="form-label">Description</label>
-        <textarea className="form-control" rows={3} value={form.description}
+        <label className="form-label">Description <span className="text-danger">*</span></label>
+        <textarea className="form-control" rows={3} required value={form.description}
                   onChange={(e) => update('description', e.target.value)} />
       </div>
 
       <div className="row">
         <div className="col-md-6 mb-3">
-          <label className="form-label">Category</label>
-          <select className="form-select" value={form.category}
+          <label className="form-label">Category <span className="text-danger">*</span></label>
+          <select className="form-select" required value={form.category}
                   onChange={(e) => update('category', e.target.value)}>
             {Object.entries(CATEGORY_LABELS).map(([key, label]) => (
               <option key={key} value={key}>{label}</option>
@@ -52,33 +52,33 @@ export default function TaskForm({ initialValue, onSubmit, onCancel }) {
         </div>
         {form.category === 'OTHER' && (
           <div className="col-md-6 mb-3">
-            <label className="form-label">Category Name</label>
+            <label className="form-label">Category Name <span className="text-danger">*</span></label>
             <input className="form-control" required value={form.customCategory || ''}
                    onChange={(e) => update('customCategory', e.target.value)}
                    placeholder="Enter custom category name" />
           </div>
         )}
         <div className={form.category === 'OTHER' ? "col-md-12 mb-3" : "col-md-6 mb-3"}>
-          <label className="form-label">Location</label>
-          <input className="form-control" value={form.location}
+          <label className="form-label">Location <span className="text-danger">*</span></label>
+          <input className="form-control" required value={form.location}
                  onChange={(e) => update('location', e.target.value)} />
         </div>
       </div>
 
       <div className="row">
         <div className="col-md-4 mb-3">
-          <label className="form-label">Assign To (optional)</label>
-          <select className="form-select" value={form.assignedToId || ''}
+          <label className="form-label">Assign To <span className="text-danger">*</span></label>
+          <select className="form-select" required value={form.assignedToId || ''}
                   onChange={(e) => update('assignedToId', e.target.value)}>
-            <option value="">Unassigned</option>
+            <option value="">Select Worker...</option>
             {workers.filter(w => w.status === 'ACTIVE').map((w) => (
               <option key={w.id} value={w.id}>{w.fullName}</option>
             ))}
           </select>
         </div>
         <div className="col-md-4 mb-3">
-          <label className="form-label">Priority</label>
-          <select className="form-select" value={form.priority}
+          <label className="form-label">Priority <span className="text-danger">*</span></label>
+          <select className="form-select" required value={form.priority}
                   onChange={(e) => update('priority', e.target.value)}>
             <option value="LOW">Low</option>
             <option value="MEDIUM">Medium</option>
@@ -86,8 +86,8 @@ export default function TaskForm({ initialValue, onSubmit, onCancel }) {
           </select>
         </div>
         <div className="col-md-4 mb-3">
-          <label className="form-label">Due Date</label>
-          <input type="date" className="form-control" value={form.dueDate || ''}
+          <label className="form-label">Due Date <span className="text-danger">*</span></label>
+          <input type="date" className="form-control" required value={form.dueDate || ''}
                  onChange={(e) => update('dueDate', e.target.value)} />
         </div>
       </div>
