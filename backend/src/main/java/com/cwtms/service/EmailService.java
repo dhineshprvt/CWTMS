@@ -3,6 +3,7 @@ package com.cwtms.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
@@ -14,6 +15,9 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 
     private final ObjectProvider<JavaMailSender> mailSenderProvider;
+
+    @Value("${spring.mail.username:myproject.testing0@gmail.com}")
+    private String fromEmail;
 
     @Async
     public void sendNotificationEmail(String toEmail, String subject, String body) {
@@ -33,7 +37,7 @@ public class EmailService {
             mailMessage.setTo(toEmail);
             mailMessage.setSubject(subject);
             mailMessage.setText(body);
-            mailMessage.setFrom("no-reply@cwtms.com");
+            mailMessage.setFrom(fromEmail);
 
             mailSender.send(mailMessage);
             log.info("Email successfully sent to {}", toEmail);
